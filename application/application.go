@@ -15,7 +15,10 @@ func NewApplication() *Application {
 }
 
 func (a *Application) Initial() error {
-	a.usrSev = userSystem.NewUserSystem()
+	params := userSystem.UserServiceParams{
+		Listenip:
+	}
+	a.usrSev = userSystem.NewUserService()
 
 	return nil
 }
