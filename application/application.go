@@ -6,8 +6,8 @@ import (
 )
 
 type Application struct {
-	c         chan os.Signal
-	usrSystem userSystem.UserSystem
+	c      chan os.Signal
+	usrSev userSystem.UserService
 }
 
 func NewApplication() *Application {
@@ -15,8 +15,8 @@ func NewApplication() *Application {
 }
 
 func (a *Application) Initial() error {
-	a.usrSystem = userSystem.NewUserSystem()
-	
+	a.usrSev = userSystem.NewUserSystem()
+
 	return nil
 }
 
