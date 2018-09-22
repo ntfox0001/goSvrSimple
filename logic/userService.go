@@ -6,11 +6,11 @@ type UserService struct {
 	server *network.Server
 }
 
-func (us *UserService) Initial(server *network.Server) error {
+func (us *UserService) OnInitial(server *network.Server) error {
 	us.server = server
 	// todo 路由注册，提供静态页面服务
 	return nil
 }
-func (us *UserService) Release() {
+func (us *UserService) OnRelease() {
 
 }
