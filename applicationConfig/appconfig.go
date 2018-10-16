@@ -2,6 +2,7 @@ package applicationConfig
 
 import (
 	"goSvrLib/log"
+	"goSvrLib/syncDBSystem"
 	"goSvrLib/userSystem"
 	"io/ioutil"
 
@@ -13,7 +14,8 @@ var (
 )
 
 type AppConfig struct {
-	UserService userSystem.UserServiceParams `json:"userService"`
+	UserService  userSystem.UserServiceParams    `json:"userService"`
+	SyncDBSystem syncDBSystem.SyncDBSystemParams `json:"syncDBSystem"`
 }
 
 func InitApplicationConfig(configFilename string) error {

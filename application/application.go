@@ -1,6 +1,8 @@
 package application
 
 import (
+	"goSvrLib/syncDBSystem"
+	"goSvrLib/timerSystem"
 	"goSvrLib/userSystem"
 	"goSvrSimple/applicationConfig"
 	"os"
@@ -8,7 +10,7 @@ import (
 
 type Application struct {
 	c      chan os.Signal
-	usrSev userSystem.UserService
+	usrSev *userSystem.UserService
 }
 
 func NewApplication(configFile string) *Application {
@@ -17,13 +19,9 @@ func NewApplication(configFile string) *Application {
 }
 
 func (a *Application) Initial() error {
-	params := userSystem.UserServiceParams{
-		Listenip: applicationConfig.Config.UserService.Listenip,
-		Port:     applicationConfig.Config.UserService.Port,
-		CertFile: applicationConfig.Config.UserService.CertFile,
-		KeyFile:  applicationConfig.Config.UserService.KeyFile,
-	}
-	a.usrSev = userSystem.NewUserService()
+	timerSystem.Instance().Initial()
+	syncDBSystem.Instance().Initial()
+	a.usrSev = userSystem.NewUserService(applicationConfig.Config.UserService)
 
 	return nil
 }
